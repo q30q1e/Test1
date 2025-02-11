@@ -44,8 +44,7 @@ namespace Test1.Pages
 
                 PlanetName = $"Название планеты : {planetData.name}";
                 PlanetGravity = $"Гравитация планеты : {planetData.gravity}";
-
-
+ 
                 var residentsNamesTasks = planetData.residents.Select(residentUrl => GetResidentName(residentUrl, client));
                 string[] residentNames = await Task.WhenAll(residentsNamesTasks);
 
