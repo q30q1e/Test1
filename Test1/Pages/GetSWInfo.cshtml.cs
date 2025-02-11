@@ -27,7 +27,6 @@ namespace Test1.Pages
         public async Task OnPost(IFormCollection form)
         {
             string action = form["action"];
-            List<string> residentNames = new();
             using HttpClient client = new();
             string tempUrl = string.Empty;
 
@@ -46,11 +45,9 @@ namespace Test1.Pages
                 PlanetName = $"Название планеты : {planetData.name}";
                 PlanetGravity = $"Гравитация планеты : {planetData.gravity}";
 
-                foreach (var residentUrl in planetData.residents)
-                {
-                    var residentName = await GetResidentName(residentUrl, client);
-                    residentNames.Add(residentName);
-                }
+
+                var residentsNamesTasks = planetData.residents.Select(residentUrl => GetResidentName(residentUrl, client));
+                string[] residentNames = await Task.WhenAll(residentsNamesTasks);
 
                 PlanetResidents = $"Резиденты планеты : {string.Join(", ", residentNames)}";
             }
