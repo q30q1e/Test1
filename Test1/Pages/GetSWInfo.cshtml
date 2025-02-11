@@ -1,0 +1,15 @@
+﻿@page
+@model Test1.Pages.GetSWInfoModel
+
+<h2>Страница для GET запроса</h2>
+
+<form method="post">
+    <button type="submit" name="action" value="first">Получить данные первой планеты</button>
+    <button type="submit" name="action" value="second">Получить данные второй планеты</button>
+</form>
+
+</
+
+<p>@Model.PlanetName</p>
+<p>@Model.PlanetGravity</p>
+<p>@Model.PlanetResidents</p>
